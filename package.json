@@ -1,5 +1,5 @@
 {
-  "name": "@x-debug/directory_manager",
+  "name": "@xdebug/directory_manager",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
