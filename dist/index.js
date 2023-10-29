@@ -26,6 +26,7 @@ program
     .option('-t, --touch <value>', 'Create a file')
     .parse(process.argv);
 const options = program.opts();
+const currentDir = process.cwd();
 function listDirContents(filepath) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -56,16 +57,16 @@ function createFile(filepath) {
 }
 // handle ls option
 if (options.ls) {
-    const filepath = typeof options.ls === 'string' ? options.ls : __dirname;
+    const filepath = typeof options.ls === 'string' ? options.ls : currentDir;
     listDirContents(filepath);
 }
 // handle mkdir option
 if (options.mkdir) {
-    createDir(path_1.default.resolve(__dirname, options.mkdir));
+    createDir(path_1.default.resolve(currentDir, options.mkdir));
 }
 // handle touch option
 if (options.touch) {
-    createFile(path_1.default.resolve(__dirname, options.touch));
+    createFile(path_1.default.resolve(currentDir, options.touch));
 }
 if (!process.argv.slice(2).length) {
     program.outputHelp();

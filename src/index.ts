@@ -15,6 +15,7 @@ program
   .parse(process.argv)
 
 const options = program.opts()
+const currentDir = process.cwd()
 
 async function listDirContents(filepath: string) {
   try {
@@ -46,18 +47,18 @@ function createFile(filepath: string) {
 
 // handle ls option
 if (options.ls) {
-  const filepath = typeof options.ls === 'string' ? options.ls : __dirname
+  const filepath = typeof options.ls === 'string' ? options.ls : currentDir
   listDirContents(filepath)
 }
 
 // handle mkdir option
 if (options.mkdir) {
-  createDir(path.resolve(__dirname, options.mkdir))
+  createDir(path.resolve(currentDir, options.mkdir))
 }
 
 // handle touch option
 if (options.touch) {
-  createFile(path.resolve(__dirname, options.touch))
+  createFile(path.resolve(currentDir, options.touch))
 }
 
 if (!process.argv.slice(2).length) {
